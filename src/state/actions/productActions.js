@@ -6,7 +6,7 @@ export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: ActionType.PRODUCT_LIST_REQUEST });
     const { data } = await axios.get(
-      "/api/products"
+      "https://shops4u.herokuapp.com/api/products"
       // "/api/products?category=" +
       //   category +
       //   "&searchKeyword=" +
@@ -28,15 +28,19 @@ export const saveProduct = (product) => async (dispatch, getState) => {
     } = getState();
 
     if (!product._id) {
-      const { data } = await axios.post("/api/products", product, {
-        headers: {
-          authorization: userInfo.token,
-        },
-      });
+      const { data } = await axios.post(
+        "https://shops4u.herokuapp.com/api/products",
+        product,
+        {
+          headers: {
+            authorization: userInfo.token,
+          },
+        }
+      );
       dispatch({ type: ActionType.PRODUCT_SAVE_SUCCESS, payload: data });
     } else {
       const { data } = await axios.put(
-        `/api/products/${product._id}`,
+        `https://shops4u.herokuapp.com/api/products/${product._id}`,
         product,
         {
           headers: {
@@ -57,7 +61,9 @@ export const detailsProduct = (productId) => async (dispatch) => {
       type: ActionType.PRODUCT_DETAILS_REQUEST,
       payload: productId,
     });
-    const { data } = await axios.get(`/api/products/${productId}`);
+    const { data } = await axios.get(
+      `https://shops4u.herokuapp.com/api/products/${productId}`
+    );
     dispatch({ type: ActionType.PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -73,11 +79,14 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
       userSignin: { userInfo },
     } = getState();
     dispatch({ type: ActionType.PRODUCT_DELETE_REQUEST, payload: productId });
-    const { data } = await axios.delete(`/api/products/${productId}`, {
-      headers: {
-        authorization: userInfo.token,
-      },
-    });
+    const { data } = await axios.delete(
+      `https://shops4u.herokuapp.com/api/products/${productId}`,
+      {
+        headers: {
+          authorization: userInfo.token,
+        },
+      }
+    );
     dispatch({
       type: ActionType.PRODUCT_DELETE_SUCCESS,
       payload: data,

@@ -11,7 +11,10 @@ export const signin = (email, password) => async (dispatch) => {
   });
 
   try {
-    const { data } = await axios.post("/api/user/signin", { email, password });
+    const { data } = await axios.post(
+      "https://shops4u.herokuapp.com/api/user/signin",
+      { email, password }
+    );
     dispatch({ type: ActionType.USER_SIGNIN_SUCCESS, payload: data });
     Cookie.set("userInfo", JSON.stringify(data));
   } catch (err) {
@@ -29,11 +32,14 @@ export const register = (name, email, password) => async (dispatch) => {
   });
 
   try {
-    const { data } = await axios.post("/api/user/register", {
-      email,
-      password,
-      name,
-    });
+    const { data } = await axios.post(
+      "https://shops4u.herokuapp.com/api/user/register",
+      {
+        email,
+        password,
+        name,
+      }
+    );
     dispatch({ type: ActionType.USER_REGISTER_SUCCESS, payload: data });
     Cookie.set("userInfo", JSON.stringify(data));
   } catch (err) {
