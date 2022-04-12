@@ -114,7 +114,14 @@ a:hover {
 .product-image {
   max-width: 34rem;
   max-height: 34rem;
+  border-radius: 5px;
 }
+
+.product-image:hover {
+  transform: scale(1.05);
+  transition: all 0.01s ease-in-out;
+}
+
 .product-rating {
   margin-bottom: 1rem;
 }
@@ -154,6 +161,7 @@ a > .rating > span:last-child {
   border: none;
   color: #ffffff;
   cursor: pointer;
+  margin-right: 10px;
 }
 .sidebar {
   position: fixed;

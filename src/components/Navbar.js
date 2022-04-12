@@ -29,7 +29,7 @@ function Navbar() {
       <header className="header">
         <div className="brand">
           <button onClick={openMenu}>&#9776;</button>
-          <a href="/">Shops</a>
+          <a href="/">Shops4U</a>
         </div>
         <div className="header-links">
           <Link to="/cart/:id">Cart</Link>
